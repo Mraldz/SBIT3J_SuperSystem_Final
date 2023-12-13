@@ -1,0 +1,28 @@
+@{
+    ViewBag.Title = "Payroll";
+    Layout = "~/Views/Shared/_PayrollLayout.cshtml";
+}
+
+@model List<EmployeeInformation>
+
+<h2>Employee List</h2>
+
+<table>
+    <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var employee in Model)
+    {
+        <tr>
+            <td>@employee.EmployeeId</td>
+            <td>@employee.Name</td>
+            <td>@employee.Status</td>
+            <td>
+                @Html.ActionLink("Edit Status", "EditEmployeeStatus", new { employeeId = employee.EmployeeId, newStatus = "NewStatus" })
+            </td>
+        </tr>
+    }
+</table>
