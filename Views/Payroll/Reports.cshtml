@@ -1,0 +1,30 @@
+@{
+    ViewBag.Title = "Payroll";
+    Layout = "~/Views/Shared/_PayrollLayout.cshtml";
+}
+
+@model List<Payroll> 
+
+<h2>Reports</h2>
+
+<table>
+    <tr>
+        <th>Report ID</th>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Month</th>
+        <th>Year</th>
+        <th>Total Salary</th>
+    </tr>
+    @foreach (var report in Model)
+    {
+        <tr>
+            <td>@report.ReportId</td>
+            <td>@report.EmployeeId</td>
+            <td>@report.EmployeeName</td>
+            <td>@report.Month</td>
+            <td>@report.Year</td>
+            <td>@report.TotalSalary</td>
+        </tr>
+    }
+</table>
