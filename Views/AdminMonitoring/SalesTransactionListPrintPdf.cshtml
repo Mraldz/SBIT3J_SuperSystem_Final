@@ -1,0 +1,74 @@
+﻿@model IEnumerable<SBIT3J_SuperSystem_Final.Models.Sales_Transaction>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SalesTransactionListPrintPdf</title>
+
+    <style>
+
+        /* Add your styles for PDF here */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <h1>Sales Transaction</h1>
+
+    <p>Total Sales:  <span>@ViewBag.totalSales</span></p>
+    <p>Average Daily Sales:  <span>@ViewBag.AverageDailySales</span></p>
+    <p>Total Order:  <span>@ViewBag.TotalCount</span></p>
+    <p>Date Printed:  <span> @DateTime.Now</span></p>
+   
+
+    <div class="table-container">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Transaction_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total_Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Transaction_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total_Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

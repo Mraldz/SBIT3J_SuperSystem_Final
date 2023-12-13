@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SBIT3J_SuperSystem_Final.Models.OverallActivitiesModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PrintPdf</title>
+    <style>
+        /* Add your styles for PDF here */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>Overall Activities - PDF Print</h2>
+
+        <table>
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Activity</th>
+                <th>Date&Time</th>
+            </tr>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Employee_ID</td>
+                    <td>@employee.Name</td>
+                    <td>@employee.Username</td>
+                    <td>@employee.Role</td>
+                    <td>@employee.Activity</td>
+                    <td>@employee.Date</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

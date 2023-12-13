@@ -1,0 +1,76 @@
+﻿@model SBIT3J_SuperSystem_Final.Models.Return_Item
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_InventoryLayout.cshtml";
+}
+
+<h2>Details</h2>
+<div class="container-fluid rounded-1 p-3 h-100">
+
+        <h4>Return_Item</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Return_Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Return_Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantity_Returned)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Quantity_Returned)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Reason)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Reason)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Resellable)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Resellable)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Product_Info.Product_Code)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Product_Info.Product_Code)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sales_Transaction.Transaction_ID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sales_Transaction.Transaction_ID)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Return_ID }) |
+        @Html.ActionLink("Back to List", "ReturnsAndRefunds")
+    </p>
+</div>

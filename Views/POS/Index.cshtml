@@ -1,8 +1,460 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_POSLayout.cshtml";
-}
+﻿﻿
+@model Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
 
-<h2>Point of sale </h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
 
+    <div class="navbar navbar-inverse navbar-fixed-top p-0">
+        <div class="container-fluid text-white py-2 px-5 m-0" style="background-color: rgba(87, 27, 39, 1);">
+            <h3 class="col">Point of Sale System</h3>
+            <h2 id="dateTime" class="text-center col-5">
+                <span id="date">@DateTime.Now.ToString("MMMM, dd yyyy")</span>
+                <span id="time" style="margin-left: 20px;">@DateTime.Now.ToString("HH:mm:ss tt")</span>
+            </h2>
+            <h3 class="col text-end ">  Paultan <i class="bi bi-person-circle" style="color:white;"></i></h3>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function updateDateTime() {
+            const dateElement = document.getElementById("date");
+            const timeElement = document.getElementById("time");
+
+            const currentTime = new Date();
+            dateElement.textContent = currentTime.toLocaleDateString(undefined, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            timeElement.textContent = currentTime.toLocaleTimeString();
+        }
+
+        updateDateTime();
+
+        setInterval(updateDateTime, 1000);
+
+
+    </script>
+
+
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Event handlers and initializations
+            $('#Product').val(0).change(function () {
+                var productId = $(this).val();
+                GetUnitPrice(productId);
+            });
+
+            $('#Discount').val(0).change(function () {
+                var discountId = $(this).val();
+                GetDiscount(discountId);
+            });
+
+            $("input[type=text]").change(CalculateSubTotal);
+            $("#btnAddtoOrder").click(AddItemtoList);
+            $("#btnCancelOrder").click(ResetItem);
+            $("#ChangeConfirm").click(function () {
+                CalculateChange();
+            });
+            $("#btnProcessOrderAndPrintReceipt").click(function () {
+                ProcessOrderAndPrintReceipt();
+            });
+        });
+
+        function ProcessOrderAndPrintReceipt() {
+            FinalPayment();
+            PrintReceipt();
+        }
+
+        function FinalPayment() {
+            var objSalesTransaction = {};
+            var ListofOrderDetailViewModel = new Array();
+            //SalesTransactionDetail
+            objSalesTransaction.Account_ID = 3;
+            objSalesTransaction.Total_Amount = $("#FinalTotalBill").val();
+            objSalesTransaction.ReceiptInfo = "006";
+
+            $("#tblOrder").find("tr:gt(0)").each(function () {
+                var SalesTransactionDetail = {};
+                SalesTransactionDetail.Product_ID = $(this).find("td:eq(0)").text();
+                SalesTransactionDetail.Total_Quantity = $(this).find("td:eq(3)").text();
+                SalesTransactionDetail.PricePerUnit = $(this).find("td:eq(2)").text();
+                SalesTransactionDetail.Subtotal = $(this).find("td:eq(5)").text();
+                SalesTransactionDetail.Discount_ID = $(this).find("td:eq(6)").text();
+                ListofOrderDetailViewModel.push(SalesTransactionDetail);
+            });
+
+            objSalesTransaction.ListofOrderDetailViewModel = ListofOrderDetailViewModel;
+
+            $.ajax({
+                async: true,
+                type: 'POST',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(objSalesTransaction),
+                url: '/POS/Index',
+                success: function (data) {
+                    alert(data)
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX error: " + status, error);
+                    alert("There is some problem to adding the data. Check the console for details.");
+                }
+
+            });
+ 
+        }
+
+
+
+
+
+        function RemoveItem(itemID) {
+            $(itemID).closest('tr').remove();
+            FinalOrderTotal();
+        }
+
+        function AddItemtoList() {
+            var tblItemList = $("#tblOrder");
+            var price = parseFloat($("#unitprice").val());
+            var quantity = parseFloat($("#txtQuantity").val());
+            var discount = parseFloat($("#txtDiscount").val());
+            var productId = $("#Product").val();
+            var productName = $("#Product option:selected").text();
+            var discountID = $('#Discount').val();
+
+            var total = (price * quantity) - discount;
+
+            var itemlist = `<tr>
+                    <td hidden>${productId}</td>
+                    <td>${productName}</td>
+                    <td>${price.toFixed(2)}</td>
+                    <td>${quantity.toFixed()}</td>
+                    <td>${discount.toFixed()}</td>
+                    <td>${total.toFixed(2)}</td>
+                    <td hidden>${discountID}</td>
+                    <td><input type='button' value='Remove' name='remove' class='btn btn-danger' onclick='RemoveItem(this)' /></td>
+                </tr>`;
+
+            tblItemList.append(itemlist);
+            FinalOrderTotal();
+            ResetItem();
+        }
+
+        function FinalOrderTotal() {
+            var finalSubTotal = 0.00;
+            $("#tblOrder").find("tr:gt(0)").each(function () {
+                finalSubTotal += parseFloat($(this).find("td:eq(5)").text());
+            });
+
+            $("#FinalSubTotal").val(finalSubTotal.toFixed(2));
+
+            var vat = 0.12 * finalSubTotal;
+            var finalTotalVatIncluded = finalSubTotal + vat;
+
+            $("#vat").val(vat.toFixed(2));
+            $("#FinalTotalBill").val(finalTotalVatIncluded.toFixed(2));
+        }
+
+        function CalculateChange() {
+            var finalTotal = 0.00;
+            $("#tblOrder").find("tr:gt(0)").each(function () {
+                finalTotal += parseFloat($(this).find("td:eq(5)").text());
+            });
+
+            var vat = 0.12 * finalTotal;
+            var finalTotalVatIncluded = finalTotal + vat;
+            var customerMoney = parseFloat($("#CustomerMoney").val());
+            var change = customerMoney - finalTotalVatIncluded;
+
+            $("#CustomerChange").val(change.toFixed(2));
+
+
+        }
+
+
+        function PrintReceipt() {
+            // Get the values needed for the receipt
+            var finalSubTotal = $("#FinalSubTotal").val();
+            var vat = $("#vat").val();
+            var finalTotalBill = $("#FinalTotalBill").val();
+            var customerMoney = $("#CustomerMoney").val();
+            var customerChange = $("#CustomerChange").val();
+
+            // Construct the receipt content with table items
+            var receiptContent = "=========================\n";
+            receiptContent += "   Downtown Alley\n";
+            receiptContent += "   123 Main Street\n";
+            receiptContent += "   Quezon City, 1999\n";
+            receiptContent += "   Phone: (123) 456-7890\n";
+            receiptContent += "   Email: DowntownAlley@gmail.com\n";
+            receiptContent += "   Website: www.DowntownAlley.com\n";
+            receiptContent += "   =========================\n\n";
+            receiptContent += "Receipt No: 006\n";
+            receiptContent += "Date/Time: " + getCurrentDateTime() + "\n";
+            receiptContent += "Cashier: Paul Tan\n\n";
+            receiptContent += "-------------------------------------------\n";
+            receiptContent += "Product Code | Qty | Price | Discnt Amt | Total\n";
+            receiptContent += "-------------------------------------------\n";
+
+            // Iterate through table rows
+            $("#tblOrder tbody tr").each(function () {
+                var productName = $(this).find("td:eq(1)").text();
+                var price = $(this).find("td:eq(2)").text();
+                var quantity = $(this).find("td:eq(3)").text();
+                var discountAmount = $(this).find("td:eq(4)").text();
+                var total = $(this).find("td:eq(5)").text();
+
+                receiptContent += productName + " | " + quantity + " | ₱" + price + " | ₱" + discountAmount + " | ₱" + total + "\n";
+            });
+
+            receiptContent += "\n-------------------------------------------\n";
+            receiptContent += "Subtotal:                        ₱" + finalSubTotal + "\n";
+            receiptContent += "Sales Tax (12%):                 ₱" + vat + "\n";
+            receiptContent += "Total Amount:                   ₱" + finalTotalBill + "\n";
+            receiptContent += "Amount Tendered:                ₱" + customerMoney + "\n";
+            receiptContent += "Change Due:                     ₱" + customerChange + "\n\n";
+            receiptContent += "Thank you for shopping with us!\n\n";
+            receiptContent += "[Return/Exchange Policy]\n";
+            receiptContent += "- Items must be returned within 30 days.\n";
+            receiptContent += "- Original receipt required for returns.\n";
+            receiptContent += "- No returns on clearance items.\n\n";
+            receiptContent += "Store Hours:\n";
+            receiptContent += "Monday-Friday: 9:00 AM - 7:00 PM\n";
+            receiptContent += "Saturday: 10:00 AM - 6:00 PM\n";
+            receiptContent += "Sunday: Closed\n\n";
+            receiptContent += "=========================";
+
+            // Open a new window with the receipt content
+            var printWindow = window.open('', '_blank');
+
+            printWindow.document.write('<html><head><title>Receipt</title>' + '</head><body><pre>' + receiptContent + '</pre></body></html>');
+
+            // Trigger the print functionality
+            printWindow.print();
+
+            $("#FinalTotalBill, #vat, #FinalSubTotal, #CustomerChange, #CustomerMoney").val("");
+            $("#tblOrder tbody").empty();
+            ResetItem();
+        }
+
+
+
+
+        function getCurrentDateTime() {
+            var currentDateTime = new Date();
+            var formattedDateTime = currentDateTime.toISOString().slice(0, 19).replace("T", " ");
+            return formattedDateTime;
+        }
+
+
+
+
+
+        function ResetItem() {
+            $("#unitprice").val('');
+            $("#txtQuantity").val('');
+            $("#txtDiscount").val('0');
+            $("#Product").val(0);
+            $('#Discount').val(0);
+            $("#subtotal").val('');
+        }
+
+        function CalculateSubTotal() {
+            var price = parseFloat($("#unitprice").val());
+            var quantity = parseInt($("#txtQuantity").val());
+            var discountPercentage = parseFloat($("#txtDiscount").val());
+
+            // Ensure the discount is a valid percentage
+            if (isNaN(discountPercentage) || discountPercentage < 0 || discountPercentage > 100) {
+                alert("Please enter a valid discount percentage.");
+                return;
+            }
+
+            var discountDecimal = discountPercentage / 100;
+
+            // Calculate discount for each item
+            var discountAmountPerItem = price * discountDecimal;
+
+            // Calculate total discount for all items
+            var totalDiscountAmount = discountAmountPerItem * quantity;
+
+            // Calculate total price after discount
+            var total = (price * quantity) - totalDiscountAmount;
+
+            $("#subtotal").val(total.toFixed(2));
+            $("#txtDiscount").val(totalDiscountAmount.toFixed(2));
+        }
+
+
+        function FilterProducts(products) {
+            return products.filter(product => !product.Is_Archived && product.Stock_Level > 0);
+        }
+
+
+        function GetUnitPrice(ProductID) {
+            $.ajax({
+                async: true,
+                type: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+                data: { ProductID: ProductID },
+                url: '/POS/getItemUnitPrice',
+                success: function (data) {
+                    $("#unitprice").val(parseFloat(data).toFixed(2));
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX error: " + status, error);
+                    alert("There is some problem getting the Unit Price. Check the console for details.");
+                }
+            });
+        }
+
+        function GetDiscount(DiscountId) {
+            $.ajax({
+                async: true,
+                type: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+                data: { DiscountId: DiscountId },
+                url: '/POS/getDiscountvalue',
+                success: function (data) {
+                    $("#txtDiscount").val(parseFloat(data).toFixed());
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX error: " + status, error);
+                    alert("There is some problem getting the Discount Amount. Check the console for details.");
+                }
+            });
+        }
+
+    </script>
+
+
+
+
+
+    <div class="container-fluid bg-body body-content min-vh-100 pt-5" style="margin-top:-62.5px; background-color: #ccc">
+        <main class="container-fluid pt-4 row">
+
+            <div class="col">
+                <div class="bg-light mx-2 border-3 rounded-1 shadow p-3">
+
+                    <div style="height:80%;">
+                        <table id="tblOrder" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th hidden>Product ID</th>
+                                    <th>Product Code</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Discount Amount</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Table rows will be added dynamically here -->
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-4 ">
+                <div class="form-group border border-1 bg-body-secondary border-black p-2">
+                    Search Product:
+                    @Html.DropDownList("Product", new SelectList(Model.Item1, "Value", "Text"),
+                                new { @class = "form-control" })
+
+                    Price:
+                    <input type="text" readonly="readonly" name="productprice" value="0.00" id="unitprice" class="form-control" />
+
+                    <div class="d-flex gap-2 mt-1">
+                        Discount:
+                        @Html.DropDownList("Discount", new SelectList(Model.Item2, "Value", "Text"),
+                                    new { @class = "form-control" })
+                        Discount Amount:
+                        <input type="text" readonly="readonly" name="Discount" value="0" id="txtDiscount" class="form-control" />
+                    </div>
+                    Quantity:
+                    <input type="text" name="Quantity" value="" id="txtQuantity" class="form-control" />
+
+
+                    Subtotal:
+                    <input type="text" name="subtotal" value="0.00" id="subtotal" class="form-control" readonly="readonly" />
+
+
+
+                    <div class="d-flex justify-content-center gap-1">
+                        <input type="button" class="btn btn-primary" id="btnAddtoOrder" value="Add to order" />
+                        <input type="button" class="btn btn-danger" id="btnCancelOrder" value="Cancel" />
+                    </div>
+                </div>
+
+
+
+                <div class="form-group border border-1 bg-body-secondary border-black p-2 my-3">
+                    <div class="d-flex gap-2 my-1">
+                        <div>
+                            Sub Total:
+                            <input type="text" name="FinalSubTotal" id="FinalSubTotal" value="0.00" class="form-control" readonly="readonly" />
+                        </div>
+                        <div>
+                            Vat:
+                            <input type="text" name="vat" id="vat" value="0.00" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+                    <h5>Total Bill:  </h5>
+                    <input type="text" name="FinalTotalBill" id="FinalTotalBill" value="0.00" class="form-control" readonly="readonly" />
+                </div>
+
+
+                <div class="form-group border border-1 bg-body-secondary border-black p-2 ">
+                    <h5>Amount tendered:</h5>
+                    <div class="d-flex gap-2">
+                        <input type="text" name="CustomerMoney" id="CustomerMoney" value="" class="form-control" />
+                        <input type="button" class="btn btn-warning float-end" name="ChangeConfirm" id="ChangeConfirm" value="Confirm" />
+                    </div>
+                    <div class="d-flex m-2 gap-2">
+                        <h4>Change:  </h4>
+                        <input type="text" name="CustomerChange" id="CustomerChange" value="0.00" class="form-control" readonly="readonly" style="text-align: right;" />
+                    </div>
+
+                    <div class="text-center mt-1">
+                        <input type="button" class="btn btn-success" name="name" value="Print Receipt" id="btnProcessOrderAndPrintReceipt" />
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <input type="button" name="name" value="Logout" class="btn btn-dark" style="position: relative; bottom:0; left:0;" />
+
+
+
+
+
+
+
+
+</body>
+</html>

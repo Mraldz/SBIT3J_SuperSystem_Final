@@ -1,0 +1,46 @@
+﻿
+@model List<SBIT3J_SuperSystem_Final.Models.Restock_Detail>
+
+@{
+    ViewBag.Title = "Restock Details";
+    Layout = "~/Views/Shared/_InventoryLayout.cshtml";
+}
+<div class="container-fluid rounded-1 p-3 h-100">
+
+    <h2>Restock Details</h2>
+    <div class="col bg-light mx-2 border-3 rounded-1 shadow p-3">
+
+        <div class="table-container" style="max-height: 70dvh; overflow-y: auto;">
+
+            @if (Model != null && Model.Count > 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th>Restock ID</th>
+                        <th>Restock Detail ID</th>
+                        <th>Product ID</th>
+                        <th>Quantity Added</th>
+                        <th>Total Amount</th>
+                    </tr>
+
+                    @foreach (var restockDetail in Model)
+                    {
+                        <tr>
+                            <td>@restockDetail.Restock_ID</td>
+                            <td>@restockDetail.RestockDetail_ID</td>
+                            <td>@restockDetail.Product_ID</td>
+                            <td>@restockDetail.Quantity_Added</td>
+                            <td>@restockDetail.Total_Amount</td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>No restock details found for the specified Restock ID.</p>
+            }
+            <br />
+            @Html.ActionLink("Back to List", "Restock")
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<SBIT3J_SuperSystem_Final.Models.Sales_Transaction>
+
 @{
     ViewBag.Title = "SalesRevenue";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -10,18 +11,69 @@
 <div class="Sales-total-top-container">
     <div class="Sales-total-container">
         <h3>Total Sales</h3>
-        <h1>4,000,000.00</h1>
+        <h1>@ViewBag.totalSales</h1>
     </div>
-    <div class="Sales-total-container">
+    @*<div class="Sales-total-container">
         <h3>Total Sales Per Day</h3>
         <h1>4,000,000.00</h1>
-    </div>
+    </div>*@
     <div class="Sales-total-container">
         <h3>Daily average Sales</h3>
-        <h1>4,000,000.00</h1>
+        <h1>@ViewBag.AverageDailySales</h1>
     </div>
     <div class="Sales-total-container">
         <h3>Total Order</h3>
-        <h1>3,0000</h1>
+        <h1>@ViewBag.TotalCount</h1>
     </div>
+</div>
+
+<div class="filter-container">
+    <form method="get" action="@Url.Action("SalesRevenue")">
+
+        <div class="search-field">
+            <input type="text" name="searchFilter" id="searchFilter" placeholder="Search" />
+            <div class="search-field-icon" name="filterType" value="search">
+                <img src="~/Image/Group1-Assets/Magnify.png" />
+            </div>
+        </div>
+
+        <button type="submit" name="filterType" value="search" style="display:none;">Apply Search Filter</button>
+
+        <div class="date-filter-container">
+            <label for="startDate">Start Date</label>
+            <input type="date" name="startDate" id="startDate" />
+
+            <label for="endDate">End Date</label>
+            <input type="date" name="endDate" id="endDate" />
+
+            <button type="submit" name="filterType" value="date">Filter Date</button>
+        </div>
+
+        <!-- Add this link for PDF generation -->
+        <a href="@Url.Action("GenerateSalesTransactionList", new { searchFilter = Request.QueryString["searchFilter"], startDate = Request.QueryString["startDate"], endDate = Request.QueryString["endDate"] })" class="btn btn-primary" target="_blank">
+            <div class="print-pdf-btn">
+                <p>Print</p>
+            </div>
+        </a>
+    </form>
+</div>
+
+
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th>Transaction ID</th>
+            <th>Total Amount</th>
+            <th>Date</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Transaction_ID</td>
+                <td>@item.Total_Amount</td>
+                <td>@item.Date</td>
+            </tr>
+        }
+    </table>
 </div>

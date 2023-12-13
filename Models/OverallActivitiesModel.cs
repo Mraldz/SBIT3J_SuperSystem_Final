@@ -14,5 +14,9 @@ namespace SBIT3J_SuperSystem_Final.Models
         public string Role {  get; set; }
         public string Activity { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+
+        // Additional properties for date filtering
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }

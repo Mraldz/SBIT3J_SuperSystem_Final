@@ -44,18 +44,112 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.2.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itext.barcodes, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.8.0.2\lib\net461\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.bouncy-castle-adapter, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.bouncy-castle-adapter.8.0.2\lib\net461\itext.bouncy-castle-adapter.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.bouncy-castle-connector, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.8.0.2\lib\net461\itext.bouncy-castle-connector.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.commons, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.commons.8.0.2\lib\net461\itext.commons.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.8.0.2\lib\net461\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.8.0.2\lib\net461\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.8.0.2\lib\net461\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.8.0.2\lib\net461\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.8.0.2\lib\net461\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.8.0.2\lib\net461\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.8.0.2\lib\net461\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=8.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itext.8.0.2\lib\net461\itext.svg.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.5.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Options.5.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -97,11 +191,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Content\scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Content\scripts\bootstrap.bundle.js" />
+    <Content Include="Content\scripts\bootstrap.bundle.min.js" />
+    <Content Include="Content\scripts\bootstrap.esm.js" />
+    <Content Include="Content\scripts\bootstrap.esm.min.js" />
+    <Content Include="Content\scripts\bootstrap.js" />
+    <Content Include="Content\scripts\bootstrap.min.js" />
+    <None Include="Content\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Content\scripts\jquery-1.10.2.js" />
+    <Content Include="Content\scripts\jquery-1.10.2.min.js" />
+    <None Include="Content\scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Content\scripts\jquery-3.7.1.js" />
+    <Content Include="Content\scripts\jquery-3.7.1.min.js" />
+    <Content Include="Content\scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Content\scripts\jquery-3.7.1.slim.min.js" />
+    <None Include="Content\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Content\scripts\jquery.validate.js" />
+    <Content Include="Content\scripts\jquery.validate.min.js" />
+    <Content Include="Content\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Content\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\scripts\respond.js" />
+    <Content Include="Content\scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Content\scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Content\scripts\respond.min.js" />
+    <None Include="Content\scripts\_references.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Styles\Group1Stylesheets\CompanyProfitStyle.css" />
     <Content Include="Content\Styles\Group1Stylesheets\Dashboard.css" />
+    <Content Include="Content\Styles\Group1Stylesheets\InventoryListStyle.css" />
     <Content Include="Content\Styles\Group1Stylesheets\LossesStyle.css" />
     <Content Include="Content\Styles\Group1Stylesheets\OverallActivitiesStyle.css" />
+    <Content Include="Content\Styles\Group1Stylesheets\ProductRevenueStyle.css" />
     <Content Include="Content\Styles\Group1Stylesheets\SalesRevenueStyle.css" />
     <Content Include="Content\Styles\LoginPage.css" />
     <Content Include="Content\Styles\Group1Stylesheets\_AdminMonitoring_Layout.css" />
@@ -113,6 +238,7 @@
     <Content Include="Image\Group1-Assets\InventoryIcon.png" />
     <Content Include="Image\Group1-Assets\LogoutIcon.png" />
     <Content Include="Image\Group1-Assets\LossesIcon.png" />
+    <Content Include="Image\Group1-Assets\Magnify.png" />
     <Content Include="Image\Group1-Assets\OveallActivityIcon.png" />
     <Content Include="Image\Group1-Assets\ProfitIcon.png" />
     <Content Include="Image\Group1-Assets\received_594167488046920.png" />
@@ -138,6 +264,10 @@
       <DependentUpon>SuperSystemDatabaseModel.edmx</DependentUpon>
       <LastGenOutput>SuperSystemDatabaseModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -147,9 +277,6 @@
     <Compile Include="Controllers\EmployeeLOGSController.cs" />
     <Compile Include="Controllers\EmployeeManagementController.cs" />
     <Compile Include="Controllers\InventoryManagement\InventoryController.cs" />
-    <Compile Include="Controllers\InventoryManagement\ProductsController.cs" />
-    <Compile Include="Controllers\InventoryManagement\RestockDetailsController.cs" />
-    <Compile Include="Controllers\InventoryManagement\RestocksController.cs" />
     <Compile Include="Controllers\PayrollController.cs" />
     <Compile Include="Controllers\InventoryManagement\POSController.cs" />
     <Compile Include="Controllers\SuperAdminController.cs" />
@@ -193,6 +320,7 @@
     <Compile Include="Models\Loss_Fraud.cs">
       <DependentUpon>SuperSystemDatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MonthlySalesViewModel.cs" />
     <Compile Include="Models\OverallActivitiesModel.cs" />
     <Compile Include="Models\Pag_Ibig.cs">
       <DependentUpon>SuperSystemDatabaseModel.tt</DependentUpon>
@@ -203,6 +331,7 @@
     <Compile Include="Models\Philhealth.cs">
       <DependentUpon>SuperSystemDatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductRevenueModel.cs" />
     <Compile Include="Models\Product_Info.cs">
       <DependentUpon>SuperSystemDatabaseModel.tt</DependentUpon>
     </Compile>
@@ -218,6 +347,7 @@
     <Compile Include="Models\Salary.cs">
       <DependentUpon>SuperSystemDatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SalesRevenueModel.cs" />
     <Compile Include="Models\Sales_Transaction.cs">
       <DependentUpon>SuperSystemDatabaseModel.tt</DependentUpon>
     </Compile>
@@ -249,6 +379,10 @@
       <DependentUpon>SuperSystemDatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DiscountRepository.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\RestockRepository.cs" />
+    <Compile Include="Repository\TransactionRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -260,6 +394,16 @@
       <DependentUpon>SuperSystemDatabaseModel.edmx</DependentUpon>
     </Content>
     <Content Include="GET THE DATABASE HERE\DBver2.bacpac" />
+    <Content Include="Content\scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\scripts\bootstrap.esm.js.map" />
+    <Content Include="Content\scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Content\scripts\bootstrap.js.map" />
+    <Content Include="Content\scripts\bootstrap.min.js.map" />
+    <Content Include="Content\scripts\jquery-1.10.2.min.map" />
+    <Content Include="Content\scripts\jquery-3.7.1.min.map" />
+    <Content Include="Content\scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\AdminMonitoring\Dashboard.cshtml" />
@@ -271,7 +415,6 @@
     <Content Include="Views\Shared\_PayrollLayout.cshtml" />
     <Content Include="Views\POS\Index.cshtml" />
     <Content Include="Views\EmployeeManagement\Index.cshtml" />
-    <Content Include="Views\Inventory\Index.cshtml" />
     <Content Include="Views\Payroll\Index.cshtml" />
     <Content Include="Views\SuperAdmin\Index.cshtml" />
     <Content Include="Views\EmployeeLOGS\Index.cshtml" />
@@ -281,6 +424,21 @@
     <Content Include="Views\AdminMonitoring\Losses.cshtml" />
     <Content Include="Views\AdminMonitoring\CashierLogs.cshtml" />
     <Content Include="Views\AdminMonitoring\OverallActivities.cshtml" />
+    <Content Include="Views\Inventory\Products.cshtml" />
+    <Content Include="Views\Inventory\Restock.cshtml" />
+    <Content Include="Views\Inventory\ReturnsAndRefunds.cshtml" />
+    <Content Include="Views\Inventory\Index.cshtml" />
+    <Content Include="Views\Inventory\ProductsCreate.cshtml" />
+    <Content Include="Views\Inventory\ProductsDelete.cshtml" />
+    <Content Include="Views\Inventory\ProductsDetails.cshtml" />
+    <Content Include="Views\Inventory\ProductsEdit.cshtml" />
+    <Content Include="Views\Inventory\ProductsArchivedProduct.cshtml" />
+    <Content Include="Views\Inventory\ReturnsAndRefundsCreate.cshtml" />
+    <Content Include="Views\Inventory\ReturnsAndRefundsDelete.cshtml" />
+    <Content Include="Views\Inventory\ReturnsAndRefundsDetails.cshtml" />
+    <Content Include="Views\Inventory\ReturnsAndRefundsEdit.cshtml" />
+    <Content Include="Views\Inventory\RestockDetails.cshtml" />
+    <Content Include="Views\Inventory\Sales_Transaction_Details.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\EmployeeManagement\SampleView.cshtml" />
@@ -295,6 +453,11 @@
     <Content Include="Views\AdminMonitoring\ProductRevenue.cshtml" />
     <Content Include="Views\EmployeeManagement\CreateLeave.cshtml" />
     <Content Include="Views\EmployeeManagement\Hr_Leave_C.cshtml" />
+    <Content Include="Views\AdminMonitoring\PrintPdf.cshtml" />
+    <Content Include="Views\AdminMonitoring\Inventory.cshtml" />
+    <Content Include="Views\AdminMonitoring\InventoryListPrintPdf.cshtml" />
+    <Content Include="Views\AdminMonitoring\SalesTransactionListPrintPdf.cshtml" />
+    <Content Include="Views\AdminMonitoring\ProductRevenuePrintPdf.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -304,12 +467,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Scripts\" />
     <Folder Include="Image\NewFolder1\" />
-    <Folder Include="Views\EmployeeManagement\ToBeDeleted\" />
-    <Folder Include="Views\Products\" />
-    <Folder Include="Views\RestockDetails\" />
-    <Folder Include="Views\Restocks\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

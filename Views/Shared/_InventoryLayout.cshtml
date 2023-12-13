@@ -2,14 +2,82 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
+
+
 <body>
-    <div>
-        @RenderBody()
+    <div class="container-fluid vh-100 p-0 m-0">
+
+        <div class="navbar navbar-inverse navbar-fixed-top p-0">
+            <div class="container-fluid text-white py-2 px-3" style="background-color: rgba(87, 27, 39, 1); ">
+                <h3 class="col m-0">Inventory Management</h3>
+
+                <h3 id="dateTime" class="text-center col  m-0">
+                    <span id="date">@DateTime.Now.ToString("MMMM, dd yyyy")</span>
+                    <span id="time" style="margin-left: 20px;">@DateTime.Now.ToString("HH:mm:ss tt")</span>
+                </h3>
+                <h3 class="col text-end m-0">  Paul Tan <i class="bi bi-person-circle" style="color:white;"></i></h3>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="container-fluid p-0 d-flex m-0" style="height: 93.3%">
+            <div class="col-2 d-flex flex-column justify-content-between p-2 text-center " style="background-color: rgba(87, 27, 39, 1); ">
+                <div class="list-group gap-4 ">
+                    <div>@Html.ActionLink("Dashboard", "Index", "Inventory", new { area = "" }, new { @class = "list-group-item list-group-item-action py-4 " })</div>
+                    <div>@Html.ActionLink("Inventory", "Products", "Inventory", new { area = "" }, new { @class = "list-group-item list-group-item-action py-4" })</div>
+                    <div>@Html.ActionLink("Restock", "Restock", "Inventory", new { area = "" }, new { @class = "list-group-item list-group-item-action py-4" })</div>
+                    <div>@Html.ActionLink("Return / Refunds", "ReturnsAndRefunds", "Inventory", new { area = "" }, new { @class = "list-group-item list-group-item-action py-4" })</div>
+                </div>
+                <div style="bottom: 0;">@Html.ActionLink("Logout", "Logout", "Accounts", new { area = "" }, new { @class = "list-group-item list-group-item-action p-3 bg-black text-white py-4" })</div>
+
+            </div>
+            <div class="col-10 m-0 p-2 bg-white ">
+                @RenderBody()
+            </div>
+        </div>
     </div>
 
-    @Html.ActionLink("Logout", "Logout", "Accounts") @*Link for logout*@
+
+
+
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script>
+        function updateDateTime() {
+            const dateElement = document.getElementById("date");
+            const timeElement = document.getElementById("time");
+
+            const currentTime = new Date();
+            dateElement.textContent = currentTime.toLocaleDateString(undefined, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            timeElement.textContent = currentTime.toLocaleTimeString();
+        }
+
+        updateDateTime();
+
+        setInterval(updateDateTime, 1000);
+    </script>
+
+
 </body>
 </html>

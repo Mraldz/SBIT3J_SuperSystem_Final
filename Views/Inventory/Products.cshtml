@@ -1,0 +1,100 @@
+﻿@model IEnumerable<SBIT3J_SuperSystem_Final.Models.Product_Info>
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_InventoryLayout.cshtml";
+}
+
+
+<div class="container-fluid rounded-1 p-3 h-100">
+    <h2>Inventory</h2>
+    <div class="col bg-light mx-2 border-3 rounded-1 shadow p-3">
+
+        <div class="d-flex justify-content-between">
+            <p>
+                @Html.ActionLink("Create New", "ProductsCreate", null, new { @class = "btn btn-success" })
+
+            </p>
+            <p>
+                @Html.ActionLink("Archived", "ProductsArchivedProduct", null, new { @class = "btn btn-success" })
+
+            </p>
+        </div>
+
+        <div class="table-container" style="max-height: 70dvh; overflow-y: auto;">
+
+            <table class="table table-hover ">
+                <tr class="">
+                    <th>
+                        Product Code
+                    </th>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Size)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Color)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sex)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        Stock Level
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="@(item.Stock_Level <= 10 ? "table-danger" : (item.Stock_Level <= 20 ? "table-warning" : ""))">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Size)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @if (item.Sex.HasValue)
+                            {
+                                <text>@(item.Sex.Value ? "Women" : "Men")</text>
+                            }
+                            else
+                            {
+                                <text>Not specified</text>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Stock_Level)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "ProductsEdit", new { id = item.Product_ID }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Archive", "ArchiveProduct", new { id = item.Product_ID }, new { @class = "btn btn-info", @onclick = "return confirm('Are you sure you want to archive this product?');" })
+                            @Html.ActionLink("Delete", "ProductsDelete", new { id = item.Product_ID }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

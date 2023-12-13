@@ -1,0 +1,74 @@
+﻿@model List<SBIT3J_SuperSystem_Final.Models.ProductRevenueModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Product Revenue Print Pdf</title>
+    <style>
+
+        /* Add your styles for PDF here */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Sales</h1>
+
+    <div class="product-total-top-container">
+        <div class="product-total-container">
+            <p>Product Sale: <span>@ViewBag.totalSalesofProduct</span></p>
+        </div>
+        <div class="product-total-container">
+            <p>Total Discount <span>@ViewBag.totalDiscAmount</span></p>
+        </div>
+        <div class="product-total-container">
+            <p>Total Sold Item: <span>@ViewBag.totalSoldItem</span></p>
+        </div>
+        <div class="product-total-container">
+            <p>Date Printed:  <span> @DateTime.Now</span></p>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Product Code</th>
+                <th>Product Name</th>
+                <th>Total Quantity</th>
+                <th>Price</th>
+                <th>Total Discount</th>
+                <th>Total Amount</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product_Code</td>
+                    <td>@item.Product_Name</td>
+                    <td>@item.Total_Quantity</td>
+                    <td>@item.Price</td>
+                    <td>@item.Total_Discount</td>
+                    <td>@item.Total_Amount</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</body>
+</html>

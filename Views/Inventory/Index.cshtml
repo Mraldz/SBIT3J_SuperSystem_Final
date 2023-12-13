@@ -1,8 +1,56 @@
-﻿
+﻿@model IEnumerable<SBIT3J_SuperSystem_Final.Models.Sales_Transaction>
+
 @{
-    ViewBag.Title = "Inventory";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_InventoryLayout.cshtml";
 }
+<div class="container-fluid rounded-1 p-3 h-100">
 
-<h2>Inventory Management</h2>
+    <h2>Sales Transactions</h2>
+    <div class="col bg-light mx-2 border-3 rounded-1 shadow p-3">
+        <div class="table-container" style="max-height: 70vh; overflow-y: auto;">
 
+            <table class="table table-hover">
+                <tr class="">
+                    <th>
+                        Transaction ID
+                    </th>
+                    <th>
+                        Total_Amount
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeAccount.Username)
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr class=" table-bordered">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Transaction_ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total_Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeAccount.Username)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Sales_Transaction_Details", new { id = item.Transaction_ID }, new { @class = "btn btn-info" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

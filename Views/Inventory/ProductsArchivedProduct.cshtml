@@ -1,0 +1,92 @@
+﻿@model IEnumerable<SBIT3J_SuperSystem_Final.Models.Product_Info>
+
+@{
+    ViewBag.Title = "ProductsArchivedProduct";
+    Layout = "~/Views/Shared/_InventoryLayout.cshtml";
+}
+
+<h2>ArchivedProduct</h2>
+<div class="container-fluid rounded-1 p-3 h-100">
+
+    <div class="d-flex justify-content-between">
+        <p>
+        </p>
+        <p>
+            @Html.ActionLink("Back", "Products", null, new { @class = "btn btn-success" })
+        </p>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock_Level)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+
+                <td>
+                    @if (item.Sex.HasValue)
+                    {
+                        <text>@(item.Sex.Value ? "Woman" : "Men")</text>
+                    }
+                    else
+                    {
+                        <text>Not specified</text>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock_Level)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "ProductsEdit", new { id = item.Product_ID }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Unarchive", "UnarchiveProduct", new { id = item.Product_ID }, new { @class = "btn btn-info", @onclick = "return confirm('Are you sure you want to unarchive this product?');" })
+                    @Html.ActionLink("Delete", "ProductsDelete", new { id = item.Product_ID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

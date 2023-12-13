@@ -23,7 +23,8 @@ namespace SBIT3J_SuperSystem_Final.Models
         public int Restock_ID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> Total_Amount { get; set; }
-    
+        public IEnumerable<Restock_Detail> ListofRestockDetailViewModel { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Restock_Detail> Restock_Detail { get; set; }
     }

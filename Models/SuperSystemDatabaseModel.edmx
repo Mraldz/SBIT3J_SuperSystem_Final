@@ -183,6 +183,7 @@
           <Property Name="Is_Archived" Type="bit" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Stock_Level" Type="int" />
+          <Property Name="Capital_Price" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Restock">
           <Key>
@@ -1193,13 +1194,14 @@
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Sex" Type="Boolean" />
           <Property Name="Is_Archived" Type="Boolean" />
-          <Property Name="Price" Type="Decimal" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Stock_Level" Type="Int32" />
           <NavigationProperty Name="Loss_Damages" Relationship="DowntownAlley_DatabaseModel.FK_Loss_Damages_Product_ID" FromRole="Product_Info" ToRole="Loss_Damages" />
           <NavigationProperty Name="Loss_Fraud" Relationship="DowntownAlley_DatabaseModel.FK_Loss_Fraud_Product_ID" FromRole="Product_Info" ToRole="Loss_Fraud" />
           <NavigationProperty Name="Restock_Detail" Relationship="DowntownAlley_DatabaseModel.FK_Restock_Detail_Product_ID" FromRole="Product_Info" ToRole="Restock_Detail" />
           <NavigationProperty Name="Return_Item" Relationship="DowntownAlley_DatabaseModel.FK_Return_Item_Product_ID" FromRole="Product_Info" ToRole="Return_Item" />
           <NavigationProperty Name="Sales_Transaction_Details" Relationship="DowntownAlley_DatabaseModel.FK_Sales_Transaction_Details_Product_ID" FromRole="Product_Info" ToRole="Sales_Transaction_Details" />
+          <Property Name="Capital_Price" Type="Decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Restock">
           <Key>
@@ -1841,6 +1843,7 @@
           <EntitySetMapping Name="Product_Info">
             <EntityTypeMapping TypeName="DowntownAlley_DatabaseModel.Product_Info">
               <MappingFragment StoreEntitySet="Product_Info">
+                <ScalarProperty Name="Capital_Price" ColumnName="Capital_Price" />
                 <ScalarProperty Name="Stock_Level" ColumnName="Stock_Level" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Is_Archived" ColumnName="Is_Archived" />

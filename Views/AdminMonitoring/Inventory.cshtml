@@ -1,0 +1,74 @@
+﻿@model IEnumerable<SBIT3J_SuperSystem_Final.Models.Product_Info>
+
+@{
+    ViewBag.Title = "Inventory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/Styles/Group1Stylesheets/InventoryListStyle.css" rel="stylesheet" />
+<h2>Inventory</h2>
+
+<div class="filter-container">
+    <form method="get" action="@Url.Action("Inventory")">
+
+        <div class="search-field">
+            <input type="text" name="searchFilter" id="searchFilter" placeholder="Search" />
+            <div class="search-field-icon" name="filterType" value="search">
+                <img src="~/Image/Group1-Assets/Magnify.png" />
+            </div>
+        </div>
+
+        <button type="submit" name="filterType" value="search" style="display:none;">Apply Search Filter</button>
+
+        <!-- Add this link for PDF generation -->
+        <a href="@Url.Action("GenerateInventoryList", new { searchFilter = Request.QueryString["searchFilter"] })" class="btn btn-primary">
+            <div class="print-pdf-btn">
+                <p>Print</p>
+            </div>
+        </a>
+    </form>
+</div>
+
+
+
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock_Level)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock_Level)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

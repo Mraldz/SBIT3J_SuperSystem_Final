@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="351f0196bba74838ba0f3fe521d4a200" Name="Diagram1" ZoomLevel="65">
+      <Diagram DiagramId="351f0196bba74838ba0f3fe521d4a200" Name="Diagram1" ZoomLevel="146">
         <EntityTypeShape EntityType="DowntownAlley_DatabaseModel.EmployeeAccount" Width="1.5" PointX="7.125" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DowntownAlley_DatabaseModel.EmployeeInformation" Width="1.5" PointX="4.875" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="DowntownAlley_DatabaseModel.FK__EmployeeA__Emplo__267ABA7A" ManuallyRouted="false" />

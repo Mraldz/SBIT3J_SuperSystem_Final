@@ -1,0 +1,100 @@
+﻿@model SBIT3J_SuperSystem_Final.Models.Product_Info
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_InventoryLayout.cshtml";
+}
+
+<h2>Delete</h2>
+<div class="container-fluid rounded-1 p-4 h-100">
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Product_Info</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Product_Code)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Product_Code)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Product_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Product_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Size)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Size)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Color)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Color)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sex)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sex)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Is_Archived)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Is_Archived)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Stock_Level)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Stock_Level)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Products")
+            </div>
+        }
+    </div>
+</div>
