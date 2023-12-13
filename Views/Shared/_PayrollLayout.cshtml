@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -6,6 +6,40 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+        <nav>
+        <ul>
+            <li>
+                <a href="@Url.Action("Dashboard", "Payroll")" class="logo-container">
+                    <img src="~/Image/Group1-Assets/received_594167488046920.png" />
+                    <span class="nav-item">Down Town Alley Payroll Management</span>
+                </a>
+            </li>
+            <li id="admin-profile">
+            </li>
+            <li>
+                <a href="@Url.Action("Employee List", "Payroll")" class="menu-container">
+                    <img src="~/Image/Group3-Assets/Employee-ICO.png" />
+                    <span class="nav-item">Employee List</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Payslip", "Payroll")" class="menu-container">
+                    <img src="~/Image/Group3-Assets/Payslip-ICO.png" />
+                    <span class="nav-item">Payslip</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Reports", "Payroll")" class="menu-container">
+                    <img src="~/Image/Group3-Assets/Reports-ICO.png" />
+                    <span class="nav-item">Reports</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Back Up & Restored", "Payroll")" class="menu-container">
+                    <img src="~/Image/Group3-Assets/Backup-ICO.png" />
+                    <span class="nav-item">Back Up & Restored</span>
+                </a>
+            </li>
     <div>
         @RenderBody()
     </div>
